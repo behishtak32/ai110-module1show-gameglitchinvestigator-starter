@@ -25,27 +25,26 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [ ] games purpose is to guess between a few numbers between 1-100 and to see which one is the correct answer. 
+- [ ] found that the code was in reverse and after fixing that it makeit work.
+- [ ] Applied a different code.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
-
+1. <!-- enter a guess of 40 -->
+2. <!-- Game returns "Too Low" -->
+3. <!--enter a guess of 70, and the game shows "Too High" -->
+4. <!-- Score update -->
+5. <!-- Game ends after the correct guess -->
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
 # Paste your pytest output here, e.g.:
-# pytest tests/
+# pytest tests/![alt text](image-1.png)
 # ========================= X passed in 0.XXs =========================
 ```
 

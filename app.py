@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+from logic_utils import check_guess
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -9,7 +10,9 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Hard":
         return 1, 50
     return 1, 100
-
+#Hard mode uses numbers from 1 to 50, while Normal mode uses 1 to 100. This makes Hard mode's guessing range smaller. 
+#FIX:  we Used ai to figure out the problem to this. 
+#Bug 3: Invalid Guesses Count as Attempts
 
 def parse_guess(raw: str):
     if raw is None:
@@ -28,24 +31,9 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
-def check_guess(guess, secret):
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
-        else:
-            return "Too Low", "📉 Go LOWER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
-
+# Problem 1: When I guessed a high number like 99 or 100, the game still told me to go higher.
+# The "Go HIGHER" and "Go LOWER" messages were reversed. check_guess now lives in logic_utils.py.
+#FIX:  we fixed this problem by reversing it. 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
@@ -130,7 +118,7 @@ with col2:
     new_game = st.button("New Game 🔁")
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
-
+#
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
@@ -145,22 +133,17 @@ if st.session_state.status != "playing":
     st.stop()
 
 if submit:
-    st.session_state.attempts += 1
-
     ok, guess_int, err = parse_guess(raw_guess)
 
+    # FIXED: only count an attempt once the guess is a valid number. #FIX:
+    # Previously attempts was incremented before parsing, so letters/blank input used up a turn.
     if not ok:
-        st.session_state.history.append(raw_guess)
         st.error(err)
     else:
+        st.session_state.attempts += 1
         st.session_state.history.append(guess_int)
 
-        if st.session_state.attempts % 2 == 0:
-            secret = str(st.session_state.secret)
-        else:
-            secret = st.session_state.secret
-
-        outcome, message = check_guess(guess_int, secret)
+        outcome, message = check_guess(guess_int, st.session_state.secret)
 
         if show_hint:
             st.warning(message)

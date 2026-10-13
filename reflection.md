@@ -5,25 +5,29 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+I feel like when i played the game, every time I went higher, It'd keep telling me to go higher and when i hit 100, it still told me to go higher even though it states to guess a number from 1-100. 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  the hints were reversed, and it kept telling me to higher. 
 
 **Bug Reproduction Log**
+One bug that i found i put 60 and it told me to go higher ![alt text](image.png). I believe the suspected code is at app.py in lines 4-21. 
 
-Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+|120 | too high | too high|none |app.py
+|60 |too high | too high| none|app.py
+|3 |too high |too high |none |app.py
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+Ive used the claude connected to this vs code 
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+AI would suggest to reverse the code in order to get the go lower and go higher part. 
 - Give one example of an AI suggestion you did not accept as written (including what the AI suggested, why you rejected or changed it, and how you verified your version). It does not have to be a suggestion that was wrong: over-engineered, out of scope, harder to read, or a poor fit for this codebase all count.
 
 ---
@@ -31,10 +35,11 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
+Id decide by going back into the game and seeing that the mistake was fixed. 
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
-
+AI did help me a lot because it showed me where the problem was and how to encounter it. 
 ---
 
 ## 4. What did you learn about Streamlit and state?
